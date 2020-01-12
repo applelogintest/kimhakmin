@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class MainClass extends JFrame {
-	Dummy2 dummy = new Dummy2();
+	Dummy dummy = new Dummy();
 	MyDeck deck = new MyDeck();
 	CardLayout card = new CardLayout();
 
