@@ -14,7 +14,6 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 public class Dummy extends JPanel implements ActionListener {
 
-	boolean bCheck = false;
 	CardVO[] card = new CardVO[24];
 	JButton[] bt = new JButton[24];
 	ArrayList<JButton> my_bt = new ArrayList<JButton>();
@@ -84,7 +83,7 @@ public class Dummy extends JPanel implements ActionListener {
 				su[i] = rand;
 			}
 
-			bt[i] = new JButton(card[su[i]].tail_fix);
+			bt[i] = new JButton(card[su[i]].tail_back_fix);
 			card[i].card_num = su[i];
 		}
 
@@ -108,18 +107,15 @@ public class Dummy extends JPanel implements ActionListener {
 	}
 
 	public JButton myDeck(double num, int bt_index) {
-		
-		if(num % 1 == 0.5)
-		{
-			my_bt.get(bt_index).setIcon(card[(int)num+12].tail_fix);
+
+		if (num % 1 == 0.5) { // 백 타일인지 확인
+			my_bt.get(bt_index).setIcon(card[(int) num + 12].tail_fix);
+			my_bt.get(bt_index).setPreferredSize(new Dimension(60, 100));
+		} else {
+			my_bt.get(bt_index).setIcon(card[((int) num)].tail_fix);
 			my_bt.get(bt_index).setPreferredSize(new Dimension(60, 100));
 		}
-		else
-		{
-			my_bt.get(bt_index).setIcon(card[((int)num)].tail_fix);
-			my_bt.get(bt_index).setPreferredSize(new Dimension(60, 100));
-		}
-			
+
 		return my_bt.get(bt_index);
 	}
 
@@ -128,16 +124,12 @@ public class Dummy extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < 24; i++) {
 			if (e.getSource() == bt[i]) {
-				if(card[i].card_num > 11) { //흑백 구분후 정열을시켜서 순서대로 나열하기위해 백은 0.5더 큰값을 주었다
-					System.out.println(card[i].card_num);
+				if (card[i].card_num > 11) { // 흑백 구분후 정열을시켜서 순서대로 나열하기위해 백은 0.5더 큰값을 주었다
 					sortNum.add(card[i].card_num - 11.5);
-					System.out.println(sortNum.get(k));
+				} else {
+					sortNum.add((double) card[i].card_num);
 				}
-				else {
-					//System.out.println(card[i].card_num);
-					sortNum.add((double)card[i].card_num);
-				}
-				
+
 				if (k == 0) {
 					m_panel.add(myDeck(sortNum.get(k), 0));
 					k++;
@@ -146,7 +138,6 @@ public class Dummy extends JPanel implements ActionListener {
 				} else {
 
 					Collections.sort(sortNum);
-					System.out.println(sortNum);
 					for (int z = 0; z <= k; z++) {
 						m_panel.add(myDeck(sortNum.get(z), z));
 					}
