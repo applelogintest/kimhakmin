@@ -1,14 +1,12 @@
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
-public class MyDeck extends JPanel {
-
-	JPanel m_panel = new JPanel();
+public class EnemyDeck {
+	JPanel e_panel = new JPanel();
 	ArrayList<JButton> my_bt = new ArrayList<JButton>();
 	ArrayList<Double> sortNum = new ArrayList<Double>();
 	JButton[] bt = new JButton[24];
@@ -16,7 +14,7 @@ public class MyDeck extends JPanel {
 
 	int k = 0;
 
-	public MyDeck(Dummy dummy) {
+	public EnemyDeck(Dummy dummy) {
 
 		for (int i = 0; i < 24; i++) {
 			card[i] = dummy.card[i];
@@ -27,7 +25,7 @@ public class MyDeck extends JPanel {
 			my_bt.add(new JButton()); // 자신의 덱 초기화
 		}
 
-		m_panel = dummy.m_panel;
+		e_panel = dummy.e_panel;
 
 	}
 
@@ -35,11 +33,11 @@ public class MyDeck extends JPanel {
 
 		if (num % 1 == 0.5) { // 백 타일인지 확인
 
-			my_bt.get(bt_index).setIcon(card[(int) num + 12].tail_fix);
+			my_bt.get(bt_index).setIcon(card[(int) num + 12].tail_back_fix);
 			my_bt.get(bt_index).setPreferredSize(new Dimension(60, 100));
 
 		} else {
-			my_bt.get(bt_index).setIcon(card[((int) num)].tail_fix);
+			my_bt.get(bt_index).setIcon(card[((int) num)].tail_back_fix);
 			my_bt.get(bt_index).setPreferredSize(new Dimension(60, 100));
 		}
 
@@ -54,7 +52,7 @@ public class MyDeck extends JPanel {
 		}
 
 		if (k == 0) {
-			m_panel.add(selected_card(sortNum.get(k), 0));
+			e_panel.add(selected_card(sortNum.get(k), 0));
 			k++;
 			bt[i].setVisible(false);
 
@@ -62,7 +60,7 @@ public class MyDeck extends JPanel {
 
 			Collections.sort(sortNum);
 			for (int z = 0; z <= k; z++) {
-				m_panel.add(selected_card(sortNum.get(z), z));
+				e_panel.add(selected_card(sortNum.get(z), z));
 			}
 
 			k++;
@@ -71,5 +69,6 @@ public class MyDeck extends JPanel {
 		}
 
 	}
+
 
 }
