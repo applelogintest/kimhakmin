@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class EnemyDeck {
 	JPanel e_panel = new JPanel();
-	ArrayList<JButton> my_bt = new ArrayList<JButton>();
+	ArrayList<JButton> e_bt = new ArrayList<JButton>();
 	ArrayList<Double> sortNum = new ArrayList<Double>();
 	JButton[] bt = new JButton[24];
 	CardVO[] card = new CardVO[24];
@@ -22,7 +22,8 @@ public class EnemyDeck {
 		}
 
 		for (int i = 0; i < 12; i++) {
-			my_bt.add(new JButton()); // 자신의 덱 초기화
+			e_bt.add(new JButton()); // 자신의 덱 초기화
+			
 		}
 
 		e_panel = dummy.e_panel;
@@ -33,15 +34,15 @@ public class EnemyDeck {
 
 		if (num % 1 == 0.5) { // 백 타일인지 확인
 
-			my_bt.get(bt_index).setIcon(card[(int) num + 12].tail_back_fix);
-			my_bt.get(bt_index).setPreferredSize(new Dimension(60, 100));
+			e_bt.get(bt_index).setIcon(card[(int) num + 12].tail_back_fix);
+			e_bt.get(bt_index).setPreferredSize(new Dimension(60, 100));
 
 		} else {
-			my_bt.get(bt_index).setIcon(card[((int) num)].tail_back_fix);
-			my_bt.get(bt_index).setPreferredSize(new Dimension(60, 100));
+			e_bt.get(bt_index).setIcon(card[((int) num)].tail_back_fix);
+			e_bt.get(bt_index).setPreferredSize(new Dimension(60, 100));
 		}
 
-		return my_bt.get(bt_index);
+		return e_bt.get(bt_index);
 	}
 
 	public void mydeck_choice(int i) { // dummy에서 카드를 고르면 숫자 및 흑백 구분하여 sortNum에 저장후 정렬시킨다

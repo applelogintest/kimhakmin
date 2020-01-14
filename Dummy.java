@@ -90,7 +90,8 @@ public class Dummy extends JPanel {
 			p.add(bt[i]);
 
 		}
-
+		
+		System.out.println("카드  4장을 선택하세요");
 		p.setBounds(100, 350, 800, 210);
 		m_panel.setBounds(100, 750, 800, 110); // 자신의 덱 패널 크기 조절
 		e_panel.setBounds(100, 50,800,110);
